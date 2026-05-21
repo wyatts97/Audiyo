@@ -59,7 +59,6 @@ COPY --from=frontend-builder /app/frontend/public ./frontend/public
 # Environment variables
 ENV PATH="/app/.venv/bin:${PATH}"
 ENV NODE_ENV=production
-ENV PORT=3001
 ENV FRONTEND_URL=http://localhost:3000
 ENV DATA_DIR=/data
 ENV LIBRARY_DIR=/data/library

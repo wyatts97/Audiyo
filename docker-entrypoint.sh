@@ -16,9 +16,9 @@ BACKEND_PID=$!
 echo "Waiting for backend to start..."
 sleep 3
 
-# Start frontend as audiyo user
+# Start frontend as audiyo user on port 3000
 cd /app/frontend
-su audiyo -s /bin/sh -c "npm start" &
+su audiyo -s /bin/sh -c "PORT=3000 npm start" &
 FRONTEND_PID=$!
 
 echo "audiyo started!"
