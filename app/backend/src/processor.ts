@@ -15,6 +15,7 @@ import {
 } from './db';
 import { tagFile } from './tagger';
 import { broadcastJobUpdate, broadcastLibraryUpdate } from './websocket';
+import { libraryCache } from './libraryCache';
 
 function getIncomingDir() {
   return path.join(config.dataDir, 'incoming');
@@ -121,24 +122,25 @@ export class JobProcessor {
 
     updateJobStatus(job.id, 'TAGGING');
     appendJobLog(job.id, 'Starting metadata tagging...');
-    
+
     const tagResult = await this.tagWithItunes(
-      job, 
-      downloadResult.files, 
+      job,
+      downloadResult.files,
       downloadResult.title,
       downloadResult.artist
     );
-    
+
     if (!tagResult.success) {
-      appendJobLog(job.id, `Tagging warning: ${tagResult.error}`);
-    } else {
-      appendJobLog(job.id, 'Tagging completed successfully');
+      throw new Error(tagResult.error || 'Tagging failed');
     }
+
+    appendJobLog(job.id, 'Tagging completed successfully');
+    libraryCache.invalidate();
 
     updateJobStatus(job.id, 'COMPLETED');
     appendJobLog(job.id, 'Job completed successfully');
     logger.job(job.id, 'Completed');
-    
+
     addToHistory(job.url, downloadResult.title, downloadResult.artist);
     broadcastJobUpdate(job.id, 'COMPLETED');
     broadcastLibraryUpdate();
@@ -290,12 +292,13 @@ export class JobProcessor {
 
         if (result.success && result.newPath) {
           const finalPath = path.join(libraryDir, path.basename(result.newPath));
-          
+
           if (fs.existsSync(finalPath)) {
             fs.unlinkSync(finalPath);
           }
-          
-          fs.renameSync(result.newPath, finalPath);
+
+          fs.copyFileSync(result.newPath, finalPath);
+          fs.unlinkSync(result.newPath);
           appendJobLog(job.id, `Moved to library: ${path.basename(finalPath)}`);
         } else if (result.error) {
           return { success: false, error: result.error };
