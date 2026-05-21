@@ -56,11 +56,6 @@ COPY --from=frontend-builder /app/frontend/node_modules ./frontend/node_modules
 COPY --from=frontend-builder /app/frontend/package.json ./frontend/
 COPY --from=frontend-builder /app/frontend/public ./frontend/public
 
-# Set ownership
-RUN chown -R audiyo:audiyo /app
-
-USER audiyo
-
 # Environment variables
 ENV PATH="/app/.venv/bin:${PATH}"
 ENV NODE_ENV=production
