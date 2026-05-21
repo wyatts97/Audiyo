@@ -19,19 +19,20 @@ RUN npm run build
 RUN npm prune --production
 
 # Production image
-FROM python:3.11-alpine
+FROM node:20-alpine
 
 # Install system dependencies
 RUN apk add --no-cache \
+    python3 \
+    py3-pip \
     ffmpeg \
-    nodejs \
-    npm \
     curl \
-    libstdc++
+    libstdc++ \
+    && ln -sf python3 /usr/local/bin/python
 
 # Install Python dependencies from requirements.txt
 COPY requirements.txt /tmp/requirements.txt
-RUN pip install --no-cache-dir -r /tmp/requirements.txt \
+RUN pip3 install --no-cache-dir -r /tmp/requirements.txt \
     && rm /tmp/requirements.txt
 
 # Create app user (Alpine syntax)
