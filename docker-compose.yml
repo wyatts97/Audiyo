@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  synchrio:
+    build: .
+    container_name: synchrio
+    ports:
+      - "3000:3000"  # Frontend
+      - "3001:3001"  # Backend API
+    volumes:
+      - ./data:/data
+      - ./config:/config
+      - ${LIBRARY_PATH:-./library}:/data/library
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - FRONTEND_URL=http://localhost:3000
+      - NEXT_PUBLIC_BACKEND_URL=http://localhost:3001
+      - DATA_DIR=/data
+      - LIBRARY_DIR=/data/library
+      - BEETS_CONFIG=/config/beets.yaml
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  data:
+  library:
