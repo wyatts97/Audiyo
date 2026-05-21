@@ -30,9 +30,10 @@ RUN apk add --no-cache \
     libstdc++ \
     && ln -sf python3 /usr/local/bin/python
 
-# Install Python dependencies from requirements.txt
+# Create a Python virtual environment and install dependencies
 COPY requirements.txt /tmp/requirements.txt
-RUN pip3 install --no-cache-dir -r /tmp/requirements.txt \
+RUN python3 -m venv /app/.venv \
+    && /app/.venv/bin/pip install --no-cache-dir -r /tmp/requirements.txt \
     && rm /tmp/requirements.txt
 
 # Create app user (Alpine syntax)
@@ -61,6 +62,7 @@ RUN chown -R audiyo:audiyo /app
 USER audiyo
 
 # Environment variables
+ENV PATH="/app/.venv/bin:${PATH}"
 ENV NODE_ENV=production
 ENV PORT=3001
 ENV FRONTEND_URL=http://localhost:3000
