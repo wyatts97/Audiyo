@@ -1,8 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
-  env: {
-    BACKEND_URL: process.env.BACKEND_URL || 'http://localhost:3001',
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'http://localhost:3001/api/:path*',
+      },
+      {
+        source: '/ws',
+        destination: 'http://localhost:3001/ws',
+      },
+    ]
   },
 }
 

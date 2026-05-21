@@ -12,6 +12,15 @@ import { config } from '../config';
 import { getSetting } from '../db';
 import { API_CONSTANTS } from '../constants';
 
+interface LibraryTrack {
+  id: string;
+  filename: string;
+  title: string;
+  artist: string;
+  album: string;
+  hasArtwork: boolean;
+}
+
 export const libraryRouter = Router();
 
 function getLibraryDir() {

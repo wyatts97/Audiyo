@@ -81,7 +81,7 @@ interface LibraryTrack {
   sourceUrl?: string
 }
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3001'
+const BACKEND_URL = ''
 
 export default function Home() {
   const [url, setUrl] = useState('')
@@ -565,14 +565,14 @@ export default function Home() {
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12 flex flex-col items-center">
           <div className="mb-4">
-            <img src="/icon-192.png" alt="Synchrio" className="h-24 w-24 sm:h-30 sm:w-30 rounded-2xl" />
+            <img src="/icon-192.png" alt="audiyo" className="h-24 w-24 sm:h-30 sm:w-30 rounded-2xl" />
           </div>
           <TiltCard className="inline-block mb-2">
             <h1 className="text-3xl sm:text-4xl font-bold tracking-tight font-[family-name:var(--font-special-gothic)] bg-gradient-to-br from-gray-200 via-gray-400 to-gray-600 bg-clip-text text-transparent" style={{
               textShadow: '0 1px 3px rgba(255,255,255,0.3), 0 8px 16px rgba(0,0,0,0.3)',
               WebkitTextStroke: '0.5px rgba(255,255,255,0.2)'
             }}>
-              SYNCHRIO
+              audiyo
             </h1>
           </TiltCard>
           <p className="text-muted-foreground text-sm sm:text-base">YouTube & SoundCloud songs, organized.</p>
@@ -1050,7 +1050,7 @@ export default function Home() {
             </div>
             <div className="pt-2 border-t">
               <p className="text-sm text-muted-foreground mb-2">About</p>
-              <p className="text-xs text-muted-foreground">Synchrio - YouTube & SoundCloud songs, organized.</p>
+              <p className="text-xs text-muted-foreground">audiyo - YouTube & SoundCloud songs, organized.</p>
               <p className="text-xs text-muted-foreground">Metadata sources: SoundCloud API, iTunes, MusicBrainz</p>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import chokidar from 'chokidar';
+import chokidar, { FSWatcher } from 'chokidar';
 import NodeID3 from 'node-id3';
 import { logger } from './logger';
 import { AUDIO_FORMATS } from './constants';
@@ -21,7 +21,7 @@ export interface CachedTrack {
 
 class LibraryCache {
   private cache: Map<string, CachedTrack> = new Map();
-  private watcher: chokidar.FSWatcher | null = null;
+  private watcher: FSWatcher | null = null;
   private libraryDir: string = '';
   private isInitialized = false;
 
@@ -118,26 +118,26 @@ class LibraryCache {
     });
 
     this.watcher
-      .on('add', (filePath) => {
+      .on('add', (filePath: string) => {
         const filename = path.basename(filePath);
         if (AUDIO_FORMATS.EXTENSIONS.some(ext => filename.endsWith(ext))) {
           logger.debug(`File added: ${filename}`, 'LibraryCache');
           this.addToCache(filename);
         }
       })
-      .on('change', (filePath) => {
+      .on('change', (filePath: string) => {
         const filename = path.basename(filePath);
         if (AUDIO_FORMATS.EXTENSIONS.some(ext => filename.endsWith(ext))) {
           logger.debug(`File changed: ${filename}`, 'LibraryCache');
           this.addToCache(filename);
         }
       })
-      .on('unlink', (filePath) => {
+      .on('unlink', (filePath: string) => {
         const filename = path.basename(filePath);
         logger.debug(`File removed: ${filename}`, 'LibraryCache');
         this.removeFromCache(filename);
       })
-      .on('error', (error) => {
+      .on('error', (error: unknown) => {
         logger.error('Watcher error', 'LibraryCache', { error });
       });
 

@@ -1,6 +1,6 @@
 @echo off
 echo ========================================
-echo Starting Synchrio Application
+echo Starting audiyo Application
 echo ========================================
 echo.
 
@@ -23,16 +23,16 @@ if not exist "app\frontend\node_modules" (
 )
 
 echo Starting backend server...
-start "Synchrio Backend" cmd /k "cd app\backend && npm run dev"
+start "audiyo Backend" cmd /k "cd app\backend && npm run dev"
 
 timeout /t 3 /nobreak >nul
 
 echo Starting frontend server...
-start "Synchrio Frontend" cmd /k "cd app\frontend && npm run dev"
+start "audiyo Frontend" cmd /k "cd app\frontend && npm run dev"
 
 echo.
 echo ========================================
-echo Synchrio is starting!
+echo audiyo is starting!
 echo ========================================
 echo Backend: http://localhost:3001
 echo Frontend: http://localhost:3000
@@ -42,6 +42,6 @@ pause >nul
 
 echo.
 echo Stopping servers...
-taskkill /FI "WindowTitle eq Synchrio Backend*" /T /F >nul 2>&1
-taskkill /FI "WindowTitle eq Synchrio Frontend*" /T /F >nul 2>&1
+taskkill /FI "WindowTitle eq audiyo Backend*" /T /F >nul 2>&1
+taskkill /FI "WindowTitle eq audiyo Frontend*" /T /F >nul 2>&1
 echo Servers stopped.

@@ -6,7 +6,7 @@ function getDataDir() {
   return process.env.DATA_DIR || path.join(__dirname, '../../data');
 }
 function getDbPath() {
-  return path.join(getDataDir(), 'synchrio.db');
+  return path.join(getDataDir(), 'audiyo.db');
 }
 
 let db: Database.Database;

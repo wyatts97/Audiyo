@@ -271,7 +271,7 @@ export async function applyMetadata(
       trackNumber: metadata.trackNumber?.toString(),
       comment: {
         language: 'eng',
-        text: metadata.sourceUrl || (metadata.platform ? `Downloaded from ${metadata.platform}` : 'Downloaded with Synchrio'),
+        text: metadata.sourceUrl || (metadata.platform ? `Downloaded from ${metadata.platform}` : 'Downloaded with audiyo'),
       },
     };
 

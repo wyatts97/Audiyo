@@ -1,6 +1,6 @@
 {
-  "name": "Synchrio",
-  "short_name": "Synchrio",
+  "name": "audiyo",
+  "short_name": "audiyo",
   "description": "YouTube to tagged audio, instantly",
   "start_url": "/",
   "display": "standalone",

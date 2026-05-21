@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
-echo "Starting Synchrio..."
+echo "Starting audiyo..."
 
 # Start backend
 cd /app/backend
@@ -17,7 +17,7 @@ cd /app/frontend
 npm start &
 FRONTEND_PID=$!
 
-echo "Synchrio started!"
+echo "audiyo started!"
 echo "  Frontend: http://localhost:3000"
 echo "  Backend:  http://localhost:3001"
 

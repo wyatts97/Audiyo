@@ -23,7 +23,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: 'Synchrio - YouTube Audio Downloader',
+  title: 'audiyo - YouTube Audio Downloader',
   description: 'Self-hosted YouTube audio downloader with automatic metadata tagging',
   manifest: '/manifest.json',
   icons: {
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'Synchrio',
+    title: 'audiyo',
   },
 }
 

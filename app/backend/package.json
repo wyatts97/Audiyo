@@ -1,7 +1,7 @@
 {
-  "name": "synchrio-backend",
+  "name": "audiyo-backend",
   "version": "1.0.0",
-  "description": "Synchrio backend API server",
+  "description": "Audiyo backend API server",
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",

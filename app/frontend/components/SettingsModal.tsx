@@ -100,7 +100,7 @@ export function SettingsModal({
           </div>
           <div className="pt-2 border-t">
             <p className="text-sm text-muted-foreground mb-2">About</p>
-            <p className="text-xs text-muted-foreground">Synchrio - YouTube & SoundCloud songs, organized.</p>
+            <p className="text-xs text-muted-foreground">audiyo - YouTube & SoundCloud songs, organized.</p>
             <p className="text-xs text-muted-foreground">Metadata sources: SoundCloud API, iTunes, MusicBrainz</p>
           </div>
         </div>

@@ -145,7 +145,8 @@ let wsManager: WebSocketManager | null = null;
 export function getWebSocketManager(): WebSocketManager {
   if (!wsManager) {
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const host = process.env.NEXT_PUBLIC_BACKEND_URL?.replace(/^https?:\/\//, '') || 'localhost:3001';
+    const port = process.env.NEXT_PUBLIC_BACKEND_PORT || '4873';
+    const host = `${window.location.hostname}:${port}`;
     const url = `${protocol}//${host}/ws`;
     wsManager = new WebSocketManager(url);
   }

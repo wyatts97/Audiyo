@@ -1,12 +1,13 @@
-version: '3.8'
-
 services:
-  synchrio:
-    build: .
-    container_name: synchrio
+  audiyo:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_BACKEND_PORT: 4873
+    container_name: audiyo
     ports:
-      - "3000:3000"  # Frontend
-      - "3001:3001"  # Backend API
+      - "4872:3000"  # Frontend
+      - "4873:3001"  # Backend API
     volumes:
       - ./data:/data
       - ./config:/config
@@ -26,7 +27,3 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
-
-volumes:
-  data:
-  library:

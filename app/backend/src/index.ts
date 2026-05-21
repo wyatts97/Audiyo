@@ -19,7 +19,7 @@ const app = express();
 const server = createServer(app);
 
 app.use(cors({
-  origin: config.frontendUrl,
+  origin: true,
   credentials: true,
 }));
 app.use(express.json());
@@ -84,7 +84,7 @@ setInterval(() => {
 app.use(errorHandler);
 
 server.listen(config.port, () => {
-  logger.info(`Synchrio backend running on port ${config.port}`, 'Startup');
+  logger.info(`audiyo backend running on port ${config.port}`, 'Startup');
 });
 
 process.on('SIGINT', () => {
