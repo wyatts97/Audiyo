@@ -23,7 +23,7 @@ export const API_CONSTANTS = {
   },
   RATE_LIMIT: {
     WINDOW_MS: 15 * 60 * 1000,
-    MAX_REQUESTS: 500,
+    MAX_REQUESTS: 10000,
   },
 } as const;
 
